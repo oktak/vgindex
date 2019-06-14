@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import SwaggerUI from 'swagger-ui';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +15,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit () {
-    SwaggerUI({
-      dom_id: '#myDomId',
-      // url: 'http://localhost:4200/assets/swagger.json' || 'http://localhost:4200/assets/swagger-demo.yaml'
-      url: 'http://localhost:4200/assets/swagger-gensim.yaml'
-    })
   }
 
-  share () {
-    console.log('share000')
-  }
+  // share () {
+  //   console.log('share000')
+  // }
 
-  onNotify() {
-    window.alert('You will be notified when the product goes on sale');
-  }
+  // onNotify() {
+  //   window.alert('You will be notified when the product goes on sale');
+  // }
 }
