@@ -11,6 +11,7 @@ import SwaggerUI from 'swagger-ui';
 
 export class AppComponent implements OnInit {
   title = 'myapp';
+  product = ['a','v'];
   constructor() {
   }
 
@@ -20,5 +21,13 @@ export class AppComponent implements OnInit {
       // url: 'http://localhost:4200/assets/swagger.json' || 'http://localhost:4200/assets/swagger-demo.yaml'
       url: 'http://localhost:4200/assets/swagger-gensim.yaml'
     })
+  }
+
+  share () {
+    console.log('share000')
+  }
+
+  onNotify() {
+    window.alert('You will be notified when the product goes on sale');
   }
 }
