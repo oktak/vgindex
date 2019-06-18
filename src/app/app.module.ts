@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgxMdModule } from 'ngx-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FunctionListComponent } from './function-list/function-list.component';
@@ -48,16 +49,23 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { ReadmeContComponent } from './readme-cont/readme-cont.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     FunctionListComponent,
-    SwaggerListComponent
+    SwaggerListComponent,
+    ReadmeContComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    NgxMdModule.forRoot(),
+    FlexLayoutModule,
     BrowserAnimationsModule,
     A11yModule,
     CdkStepperModule,

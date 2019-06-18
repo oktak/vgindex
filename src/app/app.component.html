@@ -13,21 +13,12 @@
         <h2>List of Demo</h2>
         <nav>
           <mat-nav-list>
-            <mat-list-item>
-              <a routerLink="/" routerLinkActive="active">Home</a>
-            </mat-list-item>
-            <mat-list-item>
-              <a routerLink="/kp" routerLinkActive="active">Key Phrases Extraction</a>
-            </mat-list-item>
-            <mat-list-item>
-              <a routerLink="/pos" routerLinkActive="active">Part of Speech</a>
-            </mat-list-item>
-            <mat-list-item>
-              <a routerLink="/gensim" routerLinkActive="active">Gensim</a>
-            </mat-list-item>
-            <mat-list-item>
-              <a routerLink="/api/1" routerLinkActive="active">APIs</a>
-            </mat-list-item>
+            <a mat-list-item routerLink="/" routerLinkActive="active">Home</a>
+            <a mat-list-item routerLink="/readme/kp" routerLinkActive="active">Key Phrases Extraction</a>
+            <a mat-list-item routerLink="/readme/pos" routerLinkActive="active">Part of Speech</a>
+            <a mat-list-item routerLink="/readme/gensim" routerLinkActive="active">Gensim</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/api/1" routerLinkActive="active">APIs</a>
           </mat-nav-list>
         </nav>
       </mat-nav-list>
@@ -35,7 +26,7 @@
 
     <mat-sidenav-content>
       <!--The content below is only a placeholder and can be replaced.-->
-      <div>
+      <div layout-margin basic-container>
         <h1>
           Welcome to {{ title }}!
         </h1>
