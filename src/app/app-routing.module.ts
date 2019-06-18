@@ -5,7 +5,10 @@ import { SwaggerListComponent } from './swagger-list/swagger-list.component';
 
 const routes: Routes = [
   { path: '', component: FunctionListComponent },
-  { path: 'api/:apiId', component: SwaggerListComponent }
+  { path: 'api/:apiId', component: SwaggerListComponent },
+  { path: 'kp', component: SwaggerListComponent },
+  { path: 'pos', component: SwaggerListComponent },
+  { path: 'gensim', component: SwaggerListComponent },
 ];
 
 @NgModule({

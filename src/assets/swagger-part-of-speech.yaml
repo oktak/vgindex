@@ -1,0 +1,202 @@
+swagger: "2.0"
+info:
+  description: "A demo web application for tagging a plain text with part of speech tags Using NLTK or spaCy's pre-trained POS tagger."
+  version: "1.0.0"
+  title: "Part of Speech Tagger Demo"
+  termsOfService: ""
+  contact:
+    email: "eonises@gmail.com"
+externalDocs:
+    description: Git Repo
+    url: http://192.168.1.29:3000/leo/Part-of-Speech-Tagging-web-app
+host: "N"
+basePath: "/A"
+tags:
+- name: "document"
+  description: "Handle submission and retrieval of texts"
+- name: "process"
+  description: "Handle tagging and processing of text"
+schemes:
+- "https"
+- "http"
+paths:
+  /document/new:
+    post:
+      tags:
+      - "document"
+      summary: "Add a new document to the database"
+      description: "Given a text, add it to the database, then process the text."
+      operationId: "newDoc"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Text that needs to be added to the database"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            text:
+              type: "string"
+          example:
+            text: "I go"
+      responses:
+        200:
+          description: "Valid operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+              id:
+                type: "integer"
+        500:
+          description: "Server Error"
+        
+  /document/update:
+    post:
+      tags:
+      - "document"
+      summary: "Update a existing document in the database"
+      description: "Given a ID and text, update the entry of the given ID to the new text, then process the text."
+      operationId: "updateDoc"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "ID of an item already in database, and the updated text"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+            text:
+              type: "string"
+      responses:
+        200:
+          description: "Valid operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+        500:
+          description: "Server Error"
+  /document/get:
+    post:
+      tags:
+      - "document"
+      summary: "Retrive a processed document in the database."
+      description: "Given a request containing the document ID. If document of the requested ID exists and is processed, result is array of [word,pos_tag] tuples, whitespace are included as separate words."
+      operationId: "getDoc"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "ID of an item already in database"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+      responses:
+        200:
+          description: "Valid Operation.\n "
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+              exist:
+                type: "boolean"
+              processed:
+                type: "boolean"
+              result:
+                type: "array"
+                items:
+                  type: "array"
+                  items:
+                    type: "string"
+                    minItems: 2
+                    maxItems: 2
+            example:
+              success: true
+              exist: true
+              processed: true
+              result: [["I", "PRON"], [" ", "ESC"], ["go","VERB"]]
+        500:
+          description: "Server Error"
+  /document/submit:
+    post:
+      tags:
+      - "document"
+      summary: "Submit a document to the server"
+      description: "Serve similar to /new. However, if a document have already been added in the same session, replace it instead of adding a new entry."
+      operationId: "submitDoc"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The text to be submitted."
+        required: true
+        schema:
+          type: "object"
+          properties:
+            text:
+              type: "string"
+      responses:
+        200:
+          description: "Valid operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+        500:
+          description: "Server Error"
+      deprecated: true
+  /process:
+    post:
+      tags:
+      - "process"
+      summary: "process a document in the database"
+      description: "Test function to specificaly process a exisiting text entry in the database"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The id of the text entry to be processed"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+      responses:
+        200:
+          description: "Valid operation"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+        500:
+          description: "Server Error"
+      deprecated: true
