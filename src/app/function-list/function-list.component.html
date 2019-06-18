@@ -1,6 +1,14 @@
-<p>
-  Home: function-list works! {{ product }}
-</p>
-<!-- <p *ngIf="product.price !== 700">
-  <button (click)="notify.emit()">Notify Me</button>
-</p> -->
+<!-- <mat-nav-list> -->
+  <!-- <a mat-list-item routerLink="/" routerLinkActive="active">Home</a> -->
+
+  <!-- <a *ngFor="let item of readmes" mat-list-item [routerLink]="'/readme/' + item.code" routerLinkActive="active">
+    {{ item.name }}
+  </a> -->
+
+  <a *ngFor="let item of readmes" [routerLink]="['/readme', item.code]">
+    {{item.name}}
+  </a>
+  
+  <!-- <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/api/1" routerLinkActive="active">APIs</a> -->
+<!-- </mat-nav-list> -->

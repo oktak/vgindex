@@ -1,4 +1,9 @@
-<h1>Readme of ___ </h1>
-<div fxLayout="row" fxLayoutAlign="space-around center">
-  <ngx-md [path]="'assets/README-pos.md'"></ngx-md>
+<mat-toolbar>
+  <h2>Readme of "{{ code }}"</h2>
+</mat-toolbar>
+
+<div class="ui-g">
+  <p-card class="ui-g-12 ui-md-8 ui-md-offset-1">
+    <ngx-md [path]="codePath"></ngx-md>
+  </p-card>
 </div>
