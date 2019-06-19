@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./swagger-list.component.css']
 })
 export class SwaggerListComponent implements OnInit {
-  product;
+  id;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,14 +19,12 @@ export class SwaggerListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.product = params.get('apiId');
+      this.id = params.get('apiId');
+      SwaggerUI({
+        dom_id: '#myDomId',
+        // url: 'http://localhost:4200/assets/swagger.json' || 'http://localhost:4200/assets/swagger-demo.yaml'
+        url: 'http://localhost:4200/assets/swagger-' + this.id + '.yaml'
+      })
     });
-
-    SwaggerUI({
-      dom_id: '#myDomId',
-      // url: 'http://localhost:4200/assets/swagger.json' || 'http://localhost:4200/assets/swagger-demo.yaml'
-      url: 'http://localhost:4200/assets/swagger-gensim.yaml'
-    })
   }
-
 }
