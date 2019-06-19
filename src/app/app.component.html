@@ -1,26 +1,28 @@
-<div class="app-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1 class="app-name">VG: Document Processing Demo</h1>
-  </mat-toolbar>
+<p-toolbar>
+  <div class="">
+    <div class="ui-toolbar-group-left">
+      <div class="p-grid">
+        <div class="p-col-fixed" style="width: 48px;">
+          <button pButton type="button" [label]="null" icon="pi pi-bars" (click)="display = true" class="ui-button-info"></button>
+        </div>
 
-  <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-      <mat-nav-list>
-        <nav>
-          <app-function-list [product]="product" (notify)="onNotify()"></app-function-list>
-        </nav>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <!--The content below is only a placeholder and can be replaced.-->
-      <div layout-margin basic-container>
-        <router-outlet></router-outlet>
+        <div class="p-col">
+          <h1 class="app-name" style="margin: 0;">VG: Document Processing Demo</h1>
+        </div>
       </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+    </div>
+  </div>
+</p-toolbar>
+
+<p-sidebar [(visible)]="display">
+  <nav>
+    <app-function-list [product]="product" (notify)="onNotify()"></app-function-list>
+  </nav>
+</p-sidebar>
+
+<div layout-margin basic-container>
+  <router-outlet></router-outlet>
 </div>
