@@ -7,7 +7,11 @@ import {CardModule} from 'primeng/card';
 import {SidebarModule} from 'primeng/sidebar';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
+import {ListboxModule} from 'primeng/listbox';
+import {MenuModule} from 'primeng/menu';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
+import {HttpClientModule} from '@angular/common/http';
 import {NgxMdModule} from 'ngx-md';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -29,12 +33,16 @@ import {HomeComponent} from './home/home.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     NgxMdModule.forRoot(),
     FlexLayoutModule,
     CardModule,
     SidebarModule,
     ToolbarModule,
     ButtonModule,
+    ListboxModule,
+    MenuModule,
+    ScrollPanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

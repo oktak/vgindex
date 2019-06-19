@@ -1,6 +1,27 @@
-.container {
-  padding: 20px;
+.app-name {
+  font-size: 1.15rem;
 }
-mat-sidenav-content {
-  height: calc(100vh - 64px);
+
+.wrapper {
+  padding: 64px 0.5rem;
+}
+
+.custom .ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4;
+}
+
+.custom .ui-scrollpanel-bar {
+  background-color: #1976d2;
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+.custom .ui-scrollpanel-bar:hover {
+  background-color: #135ba1;
+}
+
+@media screen and (min-width: 700px) {
+  .app-name {
+    font-size: 1.5rem;
+  }
 }

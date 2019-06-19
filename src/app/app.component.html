@@ -17,12 +17,12 @@
   </div>
 </p-toolbar>
 
-<p-sidebar [(visible)]="display">
-  <nav>
-    <app-function-list [product]="product" (notify)="onNotify()"></app-function-list>
-  </nav>
+<p-sidebar [(visible)]="display" autoZIndex="false" baseZIndex="0">
+  <p-scrollPanel [style]="{width: '100%', height: 'calc(100vh - 0px)'}" styleClass="custom">
+    <app-function-list (onCloseSidebar)="display = false" (notify)="onNotify()"></app-function-list>
+  </p-scrollPanel>
 </p-sidebar>
 
-<div layout-margin basic-container>
+<div layout-margin basic-container class="wrapper">
   <router-outlet></router-outlet>
 </div>

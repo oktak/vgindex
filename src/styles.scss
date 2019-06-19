@@ -11,3 +11,16 @@ body {
   margin: 0;
   padding: 0;
 }
+p-toolbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+@media screen and (min-width: 700px) {
+  p-toolbar {
+    // position: relative;
+  }
+}

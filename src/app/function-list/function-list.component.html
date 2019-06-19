@@ -1,14 +1,5 @@
-<!-- <mat-nav-list> -->
-  <!-- <a mat-list-item routerLink="/" routerLinkActive="active">Home</a> -->
-
-  <!-- <a *ngFor="let item of readmes" mat-list-item [routerLink]="'/readme/' + item.code" routerLinkActive="active">
-    {{ item.name }}
-  </a> -->
-
-  <a *ngFor="let item of readmes" [routerLink]="['/readme', item.code]">
-    {{item.name}}
-  </a>
-  
-  <!-- <mat-divider></mat-divider>
-  <a mat-list-item routerLink="/api/1" routerLinkActive="active">APIs</a> -->
-<!-- </mat-nav-list> -->
+<p-menu
+  [model]="items"
+  [style]="{'width':'100%', 'padding-top': '64px', 'border': '0'}"
+  (click)="activeMenu($event)"
+></p-menu>

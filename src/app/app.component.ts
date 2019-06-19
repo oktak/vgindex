@@ -36,4 +36,7 @@ export class AppComponent implements OnDestroy, OnInit {
   // onNotify() {
   //   window.alert('You will be notified when the product goes on sale');
   // }
+  onCloseSidebar () {
+  //
+  }
 }
