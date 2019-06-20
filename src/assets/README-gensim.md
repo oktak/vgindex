@@ -1,33 +1,44 @@
 # Gensim demo
 
-## Elementary Tool, generate on the fly
-* generate corpous(Bag-of-word)
-* generate tf-idf
-* generate LSI
-* generate similar
-* list of "all Passages"
-    * update the HUGE dicionary stored in a disk
+A simple interface for using Gensim to build dictionary and analyze document using TF-IDF, LSI model.
 
+Repository: [here](http://192.168.1.29:3000/omar/docker_gensim)
 
-## Training Our Dictionary
-!!! Load and Save Dictionary Binary use many RAM!
+API Specification: [here](http://192.168.1.29/api/gensim)
 
-!!! May need separate Server to handle all request related to Dictionary Binary
+## Getting Started
+It uses Docker Compose to setup multiple services:
 
-* Dictionary Mangement
-    - [v] CURD
-    - [v] Listing
+| Services         	| Usage                         	|
+|------------------	|-------------------------------	|
+| Flask + Gunicorn 	| Application main body         	|
+| NginX            	| Serve static files            	|
+| MongoDB          	| Record dictionary information 	|
 
-* [v] upload a text file
-* [v] upload the text area
-* *can be used for
-    - train the dictionary ===> MongoDB for the queue of waiting to train
-    - to get the idea of similarity
+To start the demo:
+```
+$ docker-compose up --build
+```
 
+Open browser and navigate to: [http://localhost:8080/](http://localhost:8080/)
 
-## Use the Result
+# Features
+
+## Elementary Tools
+- generate corpous(Bag-of-word)
+- generate TF-TDF
+- generate LSI
+- (WIP) generate similarity
+
+## Build dictionary
+Manage dictionary binary
+
+- Dictionary Mangement
+    - Create new dictionary
+    - Add new document to dictionary by upload file
+    - by plain text
+
+## Uses of result
 Query a "word phrase", get some idea
-- search by concept (from out "all Passages"), not just word
-- similarity matrix
-- 
-
+- (WIP) search by concept (from out "all Passages"), not only meaning of a word
+- (WIP) similarity matrix

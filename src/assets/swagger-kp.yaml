@@ -1,0 +1,423 @@
+swagger: "2.0"
+info:
+  description: "Key Phrases Extraction using 'CoreNLP' Python modules."
+  version: "0.1.0"
+  title: "Key Phrases Extraction Demo"
+  contact:
+    email: "omar@veriguide.org"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "192.168.1.108"
+basePath: "/v1"
+tags:
+- name: "Submit"
+  description: "Prepare data from users"
+- name: "Query"
+  description: "To build a Dictionary for evaluation."
+- name: "Internal Call"
+  description: "Using function of Gensim"
+schemes:
+- "http"
+- "https"
+paths:
+  /essay:
+    post:
+      tags:
+        - "Submit"
+      summary: "Returns Corpora"
+      description: "Build the store of Corpora"
+      operationId: "prepCorpora"
+      consumes:
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "essay"
+        in: "query"
+        description: "Documents to be added to Dictionary"
+        required: true
+        type: "string"
+      - name: "title"
+        in: "query"
+        description: "Character to separate essays"
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Corpora"
+  /result:
+    get:
+      tags:
+      - "Query"
+      summary: "Returns all Dictinaries"
+      description: "Build the store of Corpora"
+      operationId: "allDictionary"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AllDictionary"
+        503:
+          description: "Query database failed when: find()"
+  /selectall:
+    get:
+      tags:
+      - "Query"
+      summary: "Get a Dict"
+      description: ""
+      operationId: "oneDict"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uuid"
+        in: "query"
+        description: "UUIDv4 of Dictionary"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Dictionary"
+        502:
+          description: "query one failed"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+  /selectfail:
+    post:
+      tags:
+      - "Query"
+      summary: "Create a new Dictionary"
+      description: "To create a new Dictionary in database, for later usage"
+      operationId: "newDict"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uuid"
+        in: "query"
+        description: "UUIDv4 of Dictionary"
+        required: true
+        type: "string"
+      - name: "name"
+        in: "query"
+        description: "Name of Dictionary"
+        required: false
+        type: "string"
+      - name: "description"
+        in: "query"
+        description: "Description of Dictionary"
+        required: false
+        type: "string"
+      - name: "isupdate"
+        in: "query"
+        description: "flag to update Dictionary name or Description"
+        required: false
+        type: "number"
+        format: "int8"
+        enum:
+        - 0
+        - 1
+      responses:
+        200:
+          description: "success operation"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "OK"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+        502:
+          description: "Update Database Error"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+  /adddocument:
+    post:
+      tags:
+      - "Query"
+      summary: "Add document to Dictionary"
+      description: "To add new document to existing Dictionary in database, for later usage"
+      operationId: "addDoc"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uuid"
+        in: "query"
+        description: "UUIDv4 of Dictionary"
+        required: true
+        type: "string"
+      - name: "essay"
+        in: "query"
+        description: "Document content"
+        required: true
+        type: "string"
+      - name: "filepointer"
+        in: "query"
+        description: "Latest file name of the Dictionary"
+        required: false
+        type: "string"
+      - name: "delimit"
+        in: "query"
+        description: "Delimiter to separate multiple number of document being added"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "success operation"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "OK"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+              termcount:
+                type: "number"
+                format: "i64"
+              filepointer:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6_15595305"
+        404:
+          description: ""
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+        502:
+          description: "Update Database Error"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+  /uploaddocument:
+    post:
+      tags:
+      - "Query"
+      summary: "Upload text file to add documents to Dictionary"
+      description: "Upload text file to add new documents to existing Dictionary in database, for later usage"
+      operationId: "uploadDoc"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uuid"
+        in: "query"
+        description: "UUIDv4 of Dictionary"
+        required: true
+        type: "string"
+      - name: "filepointer"
+        in: "query"
+        description: "latest file name of the Dictionary"
+        required: false
+        type: "string"
+      - name: "delimit"
+        in: "query"
+        description: "Delimiter to separate multiple number of document being added"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "success operation"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "OK"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+              termcount:
+                type: "number"
+                format: "i64"
+              filepointer:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6_15595305"
+        404:
+          description: ""
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+        502:
+          description: "Database or file Error"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+  /_resetdictionary:
+    post:
+      tags:
+      - "Internal Call"
+      summary: "Reset the Dictionary"
+      description: "To clear the terms in a Dictionary"
+      operationId: "resetDict"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uuid"
+        in: "query"
+        description: "UUIDv4 of Dictionary"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "success operation"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "OK"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+        404:
+          description: ""
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+        502:
+          description: "Database or file Error"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "FAILED"
+              msg:
+                type: "string"
+              uuid:
+                type: "string"
+                example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+
+definitions:
+  Corpora:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+      texts:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            type: "string"
+      dictionary:
+        type: "object"
+      corpus:
+        type: "string"
+  AllDictionary:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+      count:
+        type: "integer"
+        format: "int64"
+      msg:
+        type: "array"
+        items:
+          $ref: "#/definitions/Dictionary"
+  Dictionary:
+    type: "object"
+    properties:
+      date:
+        type: "string"
+      description:
+        type: "string"
+      filepointer:
+        type: "string"
+      name:
+        type: "string"
+      termcount:
+        type: "integer"
+        format: "int64"
+      uuid:
+        type: "string"
+        example: "f43bb5b0-be31-4390-95f3-421b98a098f6"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

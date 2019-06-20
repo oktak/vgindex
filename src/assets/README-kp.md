@@ -1,10 +1,31 @@
 # Key Phrases Extraction demo
 
+It employs CoreNLP to extract key phrases from a document.
+
 Documentation:
 https://docs.google.com/document/d/1k5__aibZiNpeokfnANN7zS5fubzylLiYq8x8Ieyw59U/edit#
 
-Omar Kan <omar@veriguide.org>
 
+Repository: [here](http://192.168.1.29:3000/omar/vgdocdemo)
+
+API Specification: [here](http://192.168.1.29/api/kp)
+
+## Getting Started
+It uses Docker Compose to setup multiple services:
+
+| Services         	| Usage                         	|
+|------------------	|-------------------------------	|
+| Flask + Gunicorn 	| Application main body         	|
+| NginX            	| Serve static files            	|
+| MongoDB          	| Cache previous results 	|
+| Redis          	| Temporary storing tasks 	|
+
+To start the demo:
+```
+$ docker-compose up --build
+```
+
+Open browser and navigate to: [http://localhost:8080/](http://localhost:8080/)
 
 
 =====
