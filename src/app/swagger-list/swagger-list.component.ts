@@ -23,7 +23,8 @@ export class SwaggerListComponent implements OnInit {
       SwaggerUI({
         dom_id: '#myDomId',
         // url: 'http://localhost:4200/assets/swagger.json' || 'http://localhost:4200/assets/swagger-demo.yaml'
-        url: 'http://localhost:4200/assets/swagger-' + this.id + '.yaml'
+        // url: 'http://localhost:4200/assets/swagger-' + this.id + '.yaml'
+        url: './assets/swagger-' + this.id + '.yaml'
       })
     });
   }
