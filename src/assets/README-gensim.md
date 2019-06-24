@@ -4,6 +4,8 @@ A simple interface for using Gensim to build dictionary and analyze document usi
 
 Repository: [here](http://192.168.1.29:3000/omar/docker_gensim)
 
+Demo: http://192.168.1.29/gensim/
+
 API Specification: [here](http://192.168.1.29/api/gensim)
 
 ## Getting Started
