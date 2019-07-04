@@ -9,16 +9,16 @@ info:
 externalDocs:
     description: Git Repo
     url: http://192.168.1.29:3000/leo/Part-of-Speech-Tagging-web-app
-host: "N"
-basePath: "/A"
+host: "192.168.1.29"
+basePath: "/pos"
 tags:
 - name: "document"
   description: "Handle submission and retrieval of texts"
 - name: "process"
   description: "Handle tagging and processing of text"
 schemes:
-- "https"
 - "http"
+- "https"
 paths:
   /document/new:
     post:

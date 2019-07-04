@@ -8,6 +8,8 @@ https://docs.google.com/document/d/1k5__aibZiNpeokfnANN7zS5fubzylLiYq8x8Ieyw59U/
 
 Repository: [here](http://192.168.1.29:3000/omar/vgdocdemo)
 
+Demo: http://192.168.1.29/kp/
+
 API Specification: [here](http://192.168.1.29/api/kp)
 
 ## Getting Started

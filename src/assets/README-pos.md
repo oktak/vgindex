@@ -4,7 +4,11 @@
 
 A simple interface for using NLTK or spaCy's pre-trained POS tagger combined with Jieba to tag and display plain texts can be in either English, Chinese or a mixture of both.
 
-  
+Repository: [here](http://192.168.1.29:3000/leo/Part-of-Speech-Tagging-web-app)
+
+Demo: http://192.168.1.29/pos/
+
+API Specification: [here](http://192.168.1.29/api/pos)
 
 ## Setup
 

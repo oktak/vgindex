@@ -8,8 +8,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "192.168.1.108"
-basePath: "/v1"
+host: "192.168.1.29"
+basePath: "/gensim/api/v1"
 tags:
 - name: "Elementary"
   description: "Prepare data from users"
