@@ -12,8 +12,7 @@ import {MenuModule} from 'primeng/menu';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import {HttpClientModule} from '@angular/common/http';
-import {NgxMdModule} from 'ngx-md';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {MarkdownModule} from 'ngx-markdown';
 
 import {AppComponent} from './app.component';
 import {FunctionListComponent} from './function-list/function-list.component';
@@ -34,8 +33,7 @@ import {HomeComponent} from './home/home.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxMdModule.forRoot(),
-    FlexLayoutModule,
+    MarkdownModule.forRoot(),
     CardModule,
     SidebarModule,
     ToolbarModule,
